@@ -1,12 +1,105 @@
+'use client';
+
 import Image from 'next/image';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SpaceSection() {
+  // Refs for GSAP animations
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const leftColumnRef = useRef<HTMLDivElement>(null);
+  const centerImageRef = useRef<HTMLDivElement>(null);
+  const rightImageRef = useRef<HTMLDivElement>(null);
+  const image1Ref = useRef<HTMLDivElement>(null);
+  const image2Ref = useRef<HTMLDivElement>(null);
+
+  // GSAP Animations
+  useEffect(() => {
+    // Title animation
+    gsap.fromTo(titleRef.current, 
+      {
+        opacity: 0,
+        y: 50
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Images stagger animation
+    const images = [image1Ref.current, image2Ref.current, centerImageRef.current, rightImageRef.current];
+    
+    gsap.fromTo(images,
+      {
+        opacity: 0,
+        y: 40,
+        scale: 0.95
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: leftColumnRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Subtle hover animations for images
+    images.forEach((image) => {
+      if (image) {
+        const handleMouseEnter = () => {
+          gsap.to(image, {
+            scale: 1.02,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        };
+
+        const handleMouseLeave = () => {
+          gsap.to(image, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        };
+
+        image.addEventListener('mouseenter', handleMouseEnter);
+        image.addEventListener('mouseleave', handleMouseLeave);
+
+        // Cleanup function
+        return () => {
+          image.removeEventListener('mouseenter', handleMouseEnter);
+          image.removeEventListener('mouseleave', handleMouseLeave);
+        };
+      }
+    });
+  }, []);
+
   return (
-    <section className="bg-[#d0dfe4] py-16 xl:py-24">
+    <section ref={sectionRef} className="bg-[#d0dfe4] py-16 xl:py-24">
       <div className="px-6 lg:px-40">
         
         {/* Section Title */}
-        <h2 className="font-messapia text-3xl md:text-4xl xl:text-[40px] text-center text-neutral-700 mb-12 xl:mb-16 font-bold">
+        <h2 ref={titleRef} className="font-messapia text-3xl md:text-4xl xl:text-[40px] text-center text-neutral-700 mb-12 xl:mb-16 font-bold">
           Hearth Space
         </h2>
 
@@ -14,9 +107,9 @@ export default function SpaceSection() {
         <div className="flex flex-col xl:flex-row gap-6 xl:gap-[42px] items-start">
           
           {/* Left Column - Two stacked images (322px equivalent) */}
-          <div className="flex flex-col gap-6 xl:gap-[42px] w-full xl:flex-[322]">
+          <div ref={leftColumnRef} className="flex flex-col gap-6 xl:gap-[42px] w-full xl:flex-[322]">
             {/* space-image1 */}
-            <div className="relative aspect-[4/3] xl:h-[246px]">
+            <div ref={image1Ref} className="relative aspect-[4/3] xl:h-[246px] overflow-hidden rounded-lg">
               <Image
                 src="/space-image1.png"
                 alt="Hearth workspace with plants and natural lighting"
@@ -26,7 +119,7 @@ export default function SpaceSection() {
             </div>
             
             {/* space-image2 */}
-            <div className="relative aspect-[4/3] xl:h-[246px]">
+            <div ref={image2Ref} className="relative aspect-[4/3] xl:h-[246px] overflow-hidden rounded-lg">
               <Image
                 src="/space-image2.png"
                 alt="Collaborative workspace setup"
@@ -37,7 +130,7 @@ export default function SpaceSection() {
           </div>
 
           {/* Middle Column - Large center image (535px equivalent) */}
-          <div className="relative aspect-square xl:h-[535px] w-full xl:flex-[535]">
+          <div ref={centerImageRef} className="relative aspect-square xl:h-[535px] w-full xl:flex-[535] overflow-hidden rounded-lg">
             <Image
               src="/space-image3.png"
               alt="Main workspace area with natural elements"
@@ -47,7 +140,7 @@ export default function SpaceSection() {
           </div>
 
           {/* Right Column - Tall image (349px equivalent) */}
-          <div className="relative aspect-[3/4] xl:h-[535px] w-full xl:flex-[349]">
+          <div ref={rightImageRef} className="relative aspect-[3/4] xl:h-[535px] w-full xl:flex-[349] overflow-hidden rounded-lg">
             <Image
               src="/space-image4.png"
               alt="Wellness and meditation area"

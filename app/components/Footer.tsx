@@ -30,7 +30,9 @@ export default function Footer() {
             
             {/* Luma Logo */}
             <a 
-              href="#" 
+              href="https://lu.ma/hearthgatherings"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-20 h-10 lg:w-30 lg:h-12 hover:opacity-70 transition-opacity"
               aria-label="Visit our Luma page"
             >
@@ -45,7 +47,9 @@ export default function Footer() {
 
             {/* Instagram Logo */}
             <a 
-              href="#" 
+              href="https://instagram.com/hearth"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"
               aria-label="Follow us on Instagram"
             >
@@ -60,7 +64,9 @@ export default function Footer() {
 
             {/* LinkedIn Logo */}
             <a 
-              href="#" 
+              href="https://linkedin.com/company/hearth"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"
               aria-label="Connect on LinkedIn"
             >
@@ -75,7 +81,9 @@ export default function Footer() {
 
             {/* Contact Logo */}
             <a 
-              href="#" 
+              href="https://calendly.com/hearthcowork"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"
               aria-label="Contact us"
             >

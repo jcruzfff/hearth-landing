@@ -1,7 +1,7 @@
 export default function ContactFormSection() {
   return (
     <section 
-      className="bg-[#e8e3da] relative min-h-[750px] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="bg-[#e8e3da] relative h-[60vh] md:min-h-[750px] flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/contact-section-bg.png')" }}
     >
       {/* Content Container */}
@@ -18,18 +18,26 @@ export default function ContactFormSection() {
         </p>
         
         {/* Book a Tour Button */}
-        <div className="mb-12">
-          <button className="bg-[#8d9984] text-[#f4eee3] px-12 py-4 lg:px-16 lg:py-6 rounded-full font-montserrat font-medium text-lg lg:text-[29px] hover:bg-[#7a8671] transition-colors">
+        <div className="mb-6">
+          <a 
+            href="https://calendly.com/hearthcowork"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full md:inline-block md:w-auto bg-[#8d9984] text-[#f4eee3] px-6 md:px-24 py-4 rounded-full font-montserrat font-medium text-lg hover:bg-[#7a8671] transition-colors no-underline text-center"
+          >
             Book a tour
-          </button>
+          </a>
         </div>
         
         {/* Contact Us Link */}
         <div className="font-montserrat text-base text-neutral-700">
           <span>Have questions? </span>
-          <button className="font-bold text-[#8d9984] hover:underline transition-all">
+          <a 
+            href="mailto:hearthcowork@gmail.com?subject=Interest in Joining the Hearth Community&body=Hi there!%0A%0AI'm super interested in what you guys are doing at Hearth! I'd love to learn more about becoming a member of your coworking and wellness community.%0A%0ACould you share more details about membership options and what makes Hearth special?%0A%0ALooking forward to hearing from you!%0A%0ABest regards"
+            className="font-bold text-[#8d9984] hover:underline transition-all no-underline"
+          >
             Contact us
-          </button>
+          </a>
         </div>
       </div>
     </section>

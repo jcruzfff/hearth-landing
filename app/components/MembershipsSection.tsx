@@ -1,4 +1,12 @@
+'use client';
+
 import Image from 'next/image';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 // Membership plan type definition
 interface MembershipPlan {
@@ -77,21 +85,39 @@ interface MembershipCardProps {
 }
 
 function MembershipCard({ plan }: MembershipCardProps) {
+  const iconRef = useRef(null);
+
+  // Icon animations
+  useEffect(() => {
+    // Subtle floating animation
+    gsap.to(iconRef.current, {
+      y: -3,
+      duration: 2,
+      ease: "power1.inOut",
+      yoyo: true,
+      repeat: -1,
+      delay: Math.random() * 2 // Random delay for variety
+    });
+  }, []);
+
+
+
   if (plan.isWide) {
     // Special layout for Private Event Rental card
     return (
-      <div className="bg-transparent border border-neutral-700 rounded-[33px] p-6 xl:p-8 flex flex-col xl:flex-row xl:col-span-2 h-fit hover:shadow-lg transition-shadow duration-300 xl:gap-8">
+      <div className="bg-transparent border border-neutral-700 rounded-[33px] p-6 xl:p-8 flex flex-col xl:flex-row xl:col-span-2 h-fit xl:gap-8">
         
         {/* Left side: Standard card content */}
         <div className="flex flex-col items-center text-center xl:flex-1">
           {/* Icon Section */}
           <div className="flex items-center justify-center mb-8">
-            <div className="w-[86px] h-[40px] flex items-center justify-center">
+            <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[60px]' : 'w-[86px] h-[40px]'}`}>
               <Image
+                ref={iconRef}
                 src={plan.icon}
                 alt={plan.iconAlt}
-                width={54}
-                height={40}
+                width={plan.id === 'daily' ? 60 : 54}
+                height={plan.id === 'daily' ? 60 : 40}
                 className="object-contain"
               />
             </div>
@@ -128,16 +154,17 @@ function MembershipCard({ plan }: MembershipCardProps) {
 
   // Standard layout for other cards
   return (
-    <div className="bg-transparent border border-neutral-700 rounded-[33px] p-6 xl:p-8 flex flex-col items-center text-center h-fit hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-transparent border border-neutral-700 rounded-[33px] p-6 xl:p-8 flex flex-col items-center text-center h-fit">
       
       {/* Icon Section */}
       <div className="flex items-center justify-center mb-8">
-        <div className="w-[86px] h-[40px] flex items-center justify-center">
+        <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[60px]' : 'w-[86px] h-[40px]'}`}>
           <Image
+            ref={iconRef}
             src={plan.icon}
             alt={plan.iconAlt}
-            width={86}
-            height={40}
+            width={plan.id === 'daily' ? 60 : 86}
+            height={plan.id === 'daily' ? 60 : 40}
             className="object-contain"
           />
         </div>
@@ -162,24 +189,104 @@ function MembershipCard({ plan }: MembershipCardProps) {
 }
 
 export default function MembershipsSection() {
+  // Refs for GSAP animations
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  // GSAP Animations
+  useEffect(() => {
+    // Title animation
+    gsap.fromTo(titleRef.current, 
+      {
+        opacity: 0,
+        y: 50
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Button animation
+    gsap.fromTo(buttonRef.current,
+      {
+        opacity: 0,
+        y: 30
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: buttonRef.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+
+    // Cards animation - stagger effect
+    if (cardsRef.current) {
+      const cards = cardsRef.current.children;
+      if (cards.length > 0) {
+        gsap.fromTo(cards,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.95
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      }
+    }
+  }, []);
+
   return (
-    <section className="bg-[#e8e3da] py-16 xl:py-24">
+    <section ref={sectionRef} className="bg-[#e8e3da] py-16 xl:py-24">
       <div className="container mx-auto px-6  xl:px-32">
         
         {/* Section Title */}
         <div className="text-center mb-8 xl:mb-12">
-          <h2 className="font-messapia text-3xl md:text-4xl xl:text-5xl text-neutral-700 mb-6 xl:mb-8 font-bold leading-[1.2]">
+          <h2 ref={titleRef} className="font-messapia text-3xl md:text-4xl xl:text-5xl text-neutral-700 mb-6 xl:mb-8 font-bold leading-[1.2]">
             Coworking and Cowelness Memberships
           </h2>
           
           {/* Book a Tour Button */}
-          <button className="bg-[#8d9984] text-[#f4eee3] px-12 py-4 xl:px-16 xl:py-6 rounded-full font-montserrat font-medium text-lg xl:text-[29px] hover:bg-[#7a8671] transition-colors">
+          <a 
+            ref={buttonRef}
+            href="https://calendly.com/hearthcowork"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full md:inline-block md:w-auto bg-[#8d9984] text-[#f4eee3] px-6 md:px-24 py-4 rounded-full font-montserrat font-medium text-lg hover:bg-[#7a8671] transition-colors no-underline text-center"
+          >
             Book a tour
-          </button>
+          </a>
         </div>
 
         {/* Membership Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-6">
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-6">
           
           {/* First Row: Daily, Flex, Monthly */}
           {membershipPlans.slice(0, 3).map((plan) => (
