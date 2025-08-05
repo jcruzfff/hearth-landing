@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Hearth",
     images: [
       {
-        url: "/og-image.jpg", // You'll need to add this image
+        url: "/thumbnail.png", // You'll need to add this image
         width: 1200,
         height: 630,
         alt: "Hearth - Coworking & Co-wellness Space in South Edmonton",
