@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace with your actual domain
-Sitemap: https://hearth-space.com/sitemap.xml
+Sitemap: https://hearthcowork.com/sitemap.xml

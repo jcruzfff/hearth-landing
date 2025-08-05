@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hearth | Coworking & Co-wellness Space in South Edmonton",
     description: "Hearth is a cozy coworking and co-wellness space in South Edmonton, designed for community, creativity, and care. We host pay-what-you-can events in wellness, education, and the arts—everything from guided meditation and sound baths to financial literacy and crypto workshops. Whether you're here to work, rest, or connect, Hearth is a soft place to land.",
-    url: "thumbnail.png", // Replace with your actual domain
+    url: "https://hearthcowork.com",
     siteName: "Hearth",
     images: [
       {
