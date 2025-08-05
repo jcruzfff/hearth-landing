@@ -47,7 +47,7 @@ export default function Footer() {
 
             {/* Instagram Logo */}
             <a 
-              href="https://instagram.com/hearth"
+              href="https://instagram.com/hearthcowork"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"
@@ -64,7 +64,7 @@ export default function Footer() {
 
             {/* LinkedIn Logo */}
             <a 
-              href="https://linkedin.com/company/hearth"
+              href="https://www.linkedin.com/company/107508691"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"

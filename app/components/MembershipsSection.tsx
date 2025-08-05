@@ -270,7 +270,7 @@ export default function MembershipsSection() {
         {/* Section Title */}
         <div className="text-center mb-8 xl:mb-12">
           <h2 ref={titleRef} className="font-messapia text-3xl md:text-4xl xl:text-5xl text-neutral-700 mb-6 xl:mb-8 font-bold leading-[1.2]">
-            Coworking and Cowelness Memberships
+            Coworking and Cowellness Memberships
           </h2>
           
           {/* Book a Tour Button */}
