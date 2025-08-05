@@ -96,6 +96,13 @@ const lumaApi = new LumaApiService();
 
 export async function GET() {
   try {
+    // Debug environment variables in production
+    console.log('🔍 Environment check:', {
+      hasApiKey: !!process.env.LUMA_API_KEY,
+      calendarId: process.env.LUMA_CALENDAR_ID || 'hearthgatherings',
+      nodeEnv: process.env.NODE_ENV
+    });
+
     // Fetch events from Luma (limit to 4)
     const events = await lumaApi.getUpcomingEvents(4);
     
@@ -108,11 +115,20 @@ export async function GET() {
   } catch (error) {
     console.error('❌ API Route error:', error);
     
+    // Enhanced error response with more debugging info
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const isApiKeyMissing = !process.env.LUMA_API_KEY;
+    
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch events',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: errorMessage,
+        debug: {
+          isApiKeyMissing,
+          calendarId: process.env.LUMA_CALENDAR_ID || 'hearthgatherings',
+          timestamp: new Date().toISOString()
+        },
         events: [], // Return empty array so frontend can use fallbacks
       },
       { status: 500 }
