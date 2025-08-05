@@ -155,7 +155,7 @@ class LumaApiService {
         // Try alternative endpoint
         await this.makeRequest('/v1/user/get-self');
         return true;
-      } catch (altError) {
+      } catch {
         console.error('Luma API connection test failed:', error);
         return false;
       }

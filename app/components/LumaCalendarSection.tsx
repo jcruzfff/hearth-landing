@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
-import { formatEventDate, formatEventDateShort } from '@/lib/luma-api';
+import { formatEventDate } from '@/lib/luma-api';
 
 // Define LumaEvent type locally since we're not importing it anymore
 interface LumaEvent {
@@ -91,18 +91,14 @@ interface EventCardProps {
 }
 
 function EventCard({ event }: EventCardProps) {
-  const [imageError, setImageError] = useState(false);
   const [currentImageSrc, setCurrentImageSrc] = useState(event.image);
 
   const handleImageError = () => {
-    setImageError(true);
-    
     // If it's a Luma image that failed, try a fallback
     if (!currentImageSrc.startsWith('/event')) {
       const fallbackIndex = parseInt(event.id.slice(-1)) || 0;
       const fallbackSrc = fallbackImages[fallbackIndex % fallbackImages.length];
       setCurrentImageSrc(fallbackSrc);
-      setImageError(false);
     }
   };
 
@@ -142,10 +138,10 @@ export default function LumaCalendarSection() {
   const [error, setError] = useState<string | null>(null);
   
   // Refs for GSAP animations
-  const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const cardsRef = useRef(null);
-  const buttonRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const fetchEvents = async () => {

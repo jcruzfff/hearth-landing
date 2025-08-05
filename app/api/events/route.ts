@@ -1,5 +1,25 @@
 import { NextResponse } from 'next/server';
 
+// Types for Luma API responses
+interface LumaEvent {
+  api_id: string;
+  name: string;
+  start_at: string;
+  end_at?: string;
+  cover_url?: string;
+  description?: string;
+  url?: string;
+  timezone?: string;
+}
+
+interface LumaEventEntry {
+  event: LumaEvent;
+}
+
+interface LumaEventsResponse {
+  entries: LumaEventEntry[];
+}
+
 // Server-side Luma API integration
 class LumaApiService {
   private baseUrl = 'https://public-api.luma.com';
@@ -52,10 +72,10 @@ class LumaApiService {
         after: new Date().toISOString(), // Only future events
       });
 
-      const response = await this.makeRequest<any>(`${endpoint}?${params.toString()}`);
+      const response = await this.makeRequest<LumaEventsResponse>(`${endpoint}?${params.toString()}`);
       
       if (response && response.entries) {
-        const events = response.entries.map((entry: any) => entry.event);
+        const events = response.entries.map((entry: LumaEventEntry) => entry.event);
         // Limit to the requested number of events
         const limitedEvents = events.slice(0, limit);
         console.log(`✅ Fetched ${limitedEvents.length} upcoming events`);
