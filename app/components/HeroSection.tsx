@@ -102,7 +102,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="h-screen lg:h-[95vh] bg-[#e0e7cf] relative overflow-hidden">
+    <div className="h-screen lg:h-[95vh] min-h-[900px] lg:min-h-[800px] xl:min-h-[900px] bg-[#e0e7cf] relative overflow-hidden">
       {/* Header with Logo and Menu/Contact Button */}
       <header className="relative z-50 flex justify-between items-center px-4 lg:px-20 2xl:px-40 py-4 lg:py-9 pb-0">
         <div ref={logoRef} className="w-24 h-6 lg:w-64 lg:h-12">

@@ -111,7 +111,7 @@ function MembershipCard({ plan }: MembershipCardProps) {
         <div className="flex flex-col items-center text-center xl:flex-1">
           {/* Icon Section */}
           <div className="flex items-center justify-center mb-8">
-            <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[60px]' : 'w-[86px] h-[40px]'}`}>
+            <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[40px]' : 'w-[86px] h-[40px]'}`}>
               <Image
                 ref={iconRef}
                 src={plan.icon}
@@ -158,7 +158,7 @@ function MembershipCard({ plan }: MembershipCardProps) {
       
       {/* Icon Section */}
       <div className="flex items-center justify-center mb-8">
-        <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[60px]' : 'w-[86px] h-[40px]'}`}>
+        <div className={`flex items-center justify-center ${plan.id === 'daily' ? 'w-[60px] h-[40px]' : 'w-[86px] h-[40px]'}`}>
           <Image
             ref={iconRef}
             src={plan.icon}
