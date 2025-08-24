@@ -211,7 +211,7 @@ export default function HeroSection() {
             
             {/* Subtitle */}
             <p ref={subtitleRef} className="font-montserrat text-xl sm:text-2xl md:text-2xl lg:text-xl xl:text-2xl 2xl:text-[29px] leading-[1.3] text-neutral-700 mb-10 lg:mb-12 font-normal">
-              Where purposeful work and mindful living meet in perfect harmony.
+              Where purposeful work and mindful living meet.
             </p>
             
             {/* Action Buttons */}
