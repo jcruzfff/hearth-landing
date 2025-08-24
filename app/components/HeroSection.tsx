@@ -240,29 +240,65 @@ export default function HeroSection() {
 
           {/* Hero Image - Right Side / Below on Mobile */}
           <div className="flex-1 lg:flex-[1] relative">
-            {/* Desktop Image - normal fit */}
+            {/* Desktop Image - Two layer approach: vectors + images */}
             <div ref={desktopImageRef} className="hidden md:block relative w-full h-[500px] md:min-h-[500px] lg:h-[600px] lg:min-h-[550px] xl:h-[650px] xl:min-h-[600px] 2xl:h-[700px] 2xl:min-h-[650px]">
-              <Image
-                src="/hero-bg-image1.svg"
-                alt="Hearth coworking and wellness space illustration"
-                fill
-                className="object-contain"
-                priority
-              />
+              
+              {/* Background Layer - Vectors and Text */}
+              <div className="absolute inset-0">
+                <Image
+                  src="/hero-image-back-ground-vector-and-text.svg"
+                  alt="Background vectors and text"
+                  fill
+                  className="object-contain"
+                  quality={100}
+                  priority
+                />
+              </div>
+              
+              {/* Images Layer - Photos on top */}
+              <div className="absolute inset-0">
+                <Image
+                  src="/hero-image-back-ground-images.png"
+                  alt="Community, entrepreneurship, and wellness images"
+                  fill
+                  className="object-contain"
+                  quality={100}
+                  priority
+                />
+              </div>
+              
             </div>
           </div>
         </div>
       </div>
 
       {/* Mobile Hero Image - Full Width, Edge-to-Edge, Below Content */}
-      <div ref={mobileImageRef} className="block md:hidden relative w-full h-[400px]">
-        <Image
-          src="/mobile-hero.svg"
-          alt="Hearth coworking and wellness space illustration"
-          fill
-          className="object-cover"
-          priority
-        />
+      <div ref={mobileImageRef} className="block md:hidden relative w-full aspect-[1260/1520] mb-8">
+        
+        {/* Mobile Background Layer - Vectors and Text */}
+        <div className="absolute inset-0">
+          <Image
+            src="/mobile-hero-bg.svg"
+            alt="Mobile background vectors and text"
+            fill
+            className="object-contain"
+            quality={100}
+            priority
+          />
+        </div>
+        
+        {/* Mobile Images Layer - Photos on top */}
+        <div className="absolute inset-0">
+          <Image
+            src="/mobile-hero-images.png"
+            alt="Mobile community, entrepreneurship, and wellness images"
+            fill
+            className="object-contain"
+            quality={100}
+            priority
+          />
+        </div>
+        
       </div>
     </div>
   );
