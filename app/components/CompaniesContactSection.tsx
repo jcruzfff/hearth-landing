@@ -101,7 +101,7 @@ export default function CompaniesContactSection() {
     <section 
       ref={sectionRef}
       className="bg-[#e0e7cf] relative min-h-[559px] flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/companies-contact-section-bg.png')" }}
+      style={{ backgroundImage: "url('/frame-34.png')" }}
     >
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/20"></div>

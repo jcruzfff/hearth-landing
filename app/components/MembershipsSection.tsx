@@ -76,7 +76,7 @@ const membershipPlans: MembershipPlan[] = [
     icon: '/private-icon.svg',
     iconAlt: 'Private event icon',
     isWide: true,
-    image: '/private-image.png'
+    image: '/private-events.png'
   }
 ];
 

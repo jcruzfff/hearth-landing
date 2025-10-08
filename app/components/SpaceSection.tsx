@@ -111,7 +111,7 @@ export default function SpaceSection() {
             {/* space-image1 */}
             <div ref={image1Ref} className="relative aspect-[4/3] xl:h-[246px] overflow-hidden rounded-lg">
               <Image
-                src="/space-image1.png"
+                src="/frame-32.png"
                 alt="Hearth workspace with plants and natural lighting"
                 fill
                 className="object-cover"
@@ -121,7 +121,7 @@ export default function SpaceSection() {
             {/* space-image2 */}
             <div ref={image2Ref} className="relative aspect-[4/3] xl:h-[246px] overflow-hidden rounded-lg">
               <Image
-                src="/space-image2.png"
+                src="/frame-33.png"
                 alt="Collaborative workspace setup"
                 fill
                 className="object-cover"
@@ -132,7 +132,7 @@ export default function SpaceSection() {
           {/* Middle Column - Large center image (535px equivalent) */}
           <div ref={centerImageRef} className="relative aspect-square xl:h-[535px] w-full xl:flex-[535] overflow-hidden rounded-lg">
             <Image
-              src="/space-image3.png"
+              src="/frame-30.png"
               alt="Main workspace area with natural elements"
               fill
               className="object-cover"
@@ -142,7 +142,7 @@ export default function SpaceSection() {
           {/* Right Column - Tall image (349px equivalent) */}
           <div ref={rightImageRef} className="relative aspect-[3/4] xl:h-[535px] w-full xl:flex-[349] overflow-hidden rounded-lg">
             <Image
-              src="/space-image4.png"
+              src="/frame-31.png"
               alt="Wellness and meditation area"
               fill
               className="object-cover"
