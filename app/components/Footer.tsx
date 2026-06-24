@@ -81,9 +81,7 @@ export default function Footer() {
 
             {/* Contact Logo */}
             <a 
-              href="https://calendly.com/hearthcowork"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:hearthcowork@gmail.com?subject=Question about Hearth&body=Hi there!%0A%0AI have a question about Hearth.%0A%0AThanks so much,%0A"
               className="w-10 h-10 lg:w-12 lg:h-12 hover:opacity-70 transition-opacity"
               aria-label="Contact us"
             >

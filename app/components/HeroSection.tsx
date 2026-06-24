@@ -4,6 +4,9 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
+const contactEmailHref =
+  'mailto:hearthcowork@gmail.com?subject=Question about Hearth&body=Hi there!%0A%0AI have a question about Hearth.%0A%0AThanks so much,%0A';
+
 export default function HeroSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   
@@ -118,9 +121,7 @@ export default function HeroSection() {
         {/* Desktop Contact Button */}
         <a 
           ref={contactButtonRef}
-          href="https://calendly.com/hearthcowork"
-          target="_blank"
-          rel="noopener noreferrer"
+          href={contactEmailHref}
           className="hidden lg:inline-block bg-[#8d9984] text-[#f4eee3] px-12 py-4 rounded-full font-montserrat font-medium text-lg hover:bg-[#7a8671] transition-colors no-underline"
         >
           Contact Us
@@ -143,9 +144,7 @@ export default function HeroSection() {
         <div className="lg:hidden fixed inset-0 bg-[#e0e7cf] z-40 flex flex-col items-center justify-center">
           <nav className="flex flex-col items-center space-y-8">
             <a 
-              href="https://calendly.com/hearthcowork"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={contactEmailHref}
               className="text-2xl font-montserrat font-medium text-neutral-700 hover:text-[#8d9984] transition-colors"
               onClick={toggleMenu}
             >
@@ -201,7 +200,7 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12 xl:gap-16">
           
           {/* Text Content - Left Side */}
-          <div className="flex-1 lg:flex-[1] lg:pr-8 pt-8">
+          <div className="flex-1 lg:flex-1 lg:pr-8 pt-8">
             {/* Main Headline */}
             <h1 ref={headlineRef} className="font-messapia text-3xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-5xl xl:text-6xl 2xl:text-[67px] leading-[1.1] text-neutral-700 mb-8 lg:mb-8 font-normal">
               <span className="whitespace-nowrap">Coworking</span><br />
@@ -228,9 +227,7 @@ export default function HeroSection() {
               
               {/* Contact Us button - Mobile only */}
               <a 
-                href="https://calendly.com/hearthcowork"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={contactEmailHref}
                 className="lg:hidden flex items-center justify-center bg-transparent border-2 border-[#8d9984] text-[#8d9984] px-5 py-3 rounded-full font-montserrat font-medium text-sm hover:bg-[#8d9984] hover:text-[#f4eee3] transition-colors no-underline flex-1"
               >
                 Contact Us
@@ -239,7 +236,7 @@ export default function HeroSection() {
           </div>
 
           {/* Hero Image - Right Side / Below on Mobile */}
-          <div className="flex-1 lg:flex-[1] relative">
+          <div className="flex-1 lg:flex-1 relative">
             {/* Desktop Image - Two layer approach: vectors + images */}
             <div ref={desktopImageRef} className="hidden md:block relative w-full h-[500px] md:min-h-[500px] lg:h-[600px] lg:min-h-[550px] xl:h-[650px] xl:min-h-[600px] 2xl:h-[700px] 2xl:min-h-[650px]">
               
@@ -273,7 +270,7 @@ export default function HeroSection() {
       </div>
 
       {/* Mobile Hero Image - Full Width, Edge-to-Edge, Below Content */}
-      <div ref={mobileImageRef} className="block md:hidden relative w-full aspect-[1260/1520] mb-8">
+      <div ref={mobileImageRef} className="block md:hidden relative w-full aspect-1260/1520 mb-8">
         
         {/* Mobile Background Layer - Vectors and Text */}
         <div className="absolute inset-0">
